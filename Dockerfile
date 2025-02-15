@@ -15,8 +15,9 @@ RUN uv pip install --system -e . && uv pip install --system -e .[compile] # Inst
 RUN python -c "import torch; print(torch.__version__)"  # Verify torch installation
 
 # Debugging Befehle:
-RUN which python
-RUN python -c "import sys; print(sys.path)"
-RUN pip list
+# RUN which python
+# RUN python -c "import sys; print(sys.path)"
+# RUN pip list
 
-CMD ["uvicorn", "openai_api:app", "--host", "0.0.0.0", "--reload"]
+# CMD ["uvicorn", "openai_api:app", "--host", "0.0.0.0", "--reload"]
+CMD ["/bin/bash", "-c", "source /opt/conda/bin/activate base && echo 'PATH:' $PATH && echo 'PYTHONPATH:' $PYTHONPATH && uvicorn openai_api:app --host 0.0.0.0 --reload"]

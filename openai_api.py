@@ -13,7 +13,7 @@ from pydantic import BaseModel
 from zonos.model import Zonos # Zonos importieren (benötigt zonos package)
 from zonos.conditioning import make_cond_dict # Konditionierungsfunktionen importieren
 
-app = FastAPI(title="My API", description="My awesome API", version="1.0.0")
+app = FastAPI(title="Zonos API", description="Zonos Text-to-Speech API", version="1.0.0")
 
 class SpeechRequest(BaseModel):
     """
@@ -38,10 +38,10 @@ async def startup_event():
     model.requires_grad_(False).eval() # Modell in den Eval-Modus setzen
     print(f"Zonos model loaded successfully on device: {device}!")
 
-@app.post("/v1/audio/speech", summary="Sprachsynthese erstellen")
+@app.post("/v1/audio/speech", summary="Generate Speech")
 async def create_speech(request: SpeechRequest):
     """
-    Erstellt eine Sprachsynthese aus dem gegebenen Text.
+    Generates speech from the given text input, using the specified model and voice.
     """
     global model # Zugriff auf globale Modell-Variable
 
