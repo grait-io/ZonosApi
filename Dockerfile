@@ -8,6 +8,6 @@ RUN apt update && \
 WORKDIR /app
 COPY . ./
 
-RUN uv pip install --system -r requirements.txt
+RUN uv pip install --system .
 
 CMD ["uvicorn", "openai_api:app", "--host", "0.0.0.0", "--reload"]

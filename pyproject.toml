@@ -19,6 +19,9 @@ dependencies = [
     "soundfile>=0.13.1",
     "huggingface-hub>=0.28.1",
     "gradio>=5.15.0",
+    "fastapi",
+    "uvicorn",
+    "pydantic",
 ]
 
 # Note: Not actually optional. All the modeling code lives in mamba-ssm.

@@ -6,3 +6,4 @@ torchaudio
 mamba-ssm
 huggingface_hub
 kanjize
+phonemizer
