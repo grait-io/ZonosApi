@@ -5,3 +5,4 @@ torch
 torchaudio
 mamba-ssm
 huggingface_hub
+kanjize
