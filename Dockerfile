@@ -9,6 +9,5 @@ WORKDIR /app
 COPY . ./
 
 RUN uv pip install --system -e . && uv pip install --system -e .[compile]
-RUN pip install -r requirements.txt
 
 CMD ["uvicorn", "openai_api:app", "--host", "0.0.0.0", "--reload"]

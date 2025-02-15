@@ -7,18 +7,24 @@
 # mamba-ssm
 # huggingface_hub
 
-from fastapi import FastAPI, Response
+from fastapi import FastAPI, Response, APIRouter
 from io import BytesIO
 from pydantic import BaseModel
 # from zonos.model import Zonos # Zonos importieren (benötigt zonos package)
 # from zonos.conditioning import make_cond_dict # Konditionierungsfunktionen importieren
 
-app = FastAPI()
+app = FastAPI(title="My API", description="My awesome API", version="1.0.0")
 
 class SpeechRequest(BaseModel):
+    """
+    Anfrage für die Sprachsynthese.
+    """
     model: str
+    """Das zu verwendende Sprachmodell."""
     voice: str
+    """Die zu verwendende Stimme."""
     input: str
+    """Der zu synthetisierende Eingabetext."""
 
 # MODEL_REPO_ID = "Zyphra/Zonos-v0.1-transformer" # Modell-Repo ID (Zyphra/Zonos-v0.1-transformer oder Zyphra/Zonos-v0.1-hybrid)
 # device = "cuda" if torch.cuda.is_available() else "cpu" # Device-Auswahl (CUDA falls verfügbar)
@@ -32,8 +38,11 @@ class SpeechRequest(BaseModel):
 #     model.requires_grad_(False).eval() # Modell in den Eval-Modus setzen
 #     print(f"Zonos model loaded successfully on device: {device}!")
 
-@app.post("/v1/audio/speech")
+@app.post("/v1/audio/speech", summary="Sprachsynthese erstellen")
 async def create_speech(request: SpeechRequest):
+    """
+    Erstellt eine Sprachsynthese aus dem gegebenen Text.
+    """
     # global model # Zugriff auf globale Modell-Variable
 
     # if model is None: # Sicherstellen, dass das Modell geladen ist
